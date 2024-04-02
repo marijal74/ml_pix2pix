@@ -1,7 +1,7 @@
 # %%
 import torch.nn as nn
 import torch
-import process_data
+import src.process_data as process_data
 import matplotlib.pyplot as plt
 
 # %%
