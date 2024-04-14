@@ -1,8 +1,6 @@
 # %%
 import torch.nn as nn
 import torch
-import src.process_data as process_data
-import matplotlib.pyplot as plt
 
 # %%
 class SkipConnection(nn.Module):
