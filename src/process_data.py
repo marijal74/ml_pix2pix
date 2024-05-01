@@ -116,7 +116,7 @@ class ImageDataset(Dataset):
         w2 = int(w/2)
         x = self.preprocess(v2.functional.crop(img, 0, w2, w2, h))
         y = self.preprocess(v2.functional.crop(img, 0, 0, w2, h))
-        return {'x':x, 'y':y}
+        return x, y
     
     def __len__(self):
         self.__get_image_paths__()
