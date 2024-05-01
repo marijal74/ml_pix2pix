@@ -1,5 +1,6 @@
 # %%
 import matplotlib.pyplot as plt
+import torch
 
 # %%
 def print_sample(input, ground_truth, generated_img, row=0):
@@ -12,7 +13,7 @@ def print_sample(input, ground_truth, generated_img, row=0):
     axs[0, 1].set_title('ground_truth')
     axs[0, 2].set_title('output')
     for i, img in enumerate(imgs):
-        axs[row, i].imshow(img.permute(1, 2, 0))
+        axs[row, i].imshow(img.permute(1, 2, 0).type(torch.uint8))
         axs[row, i].set_xticklabels([])
         axs[row, i].set_yticklabels([])
     plt.show()
