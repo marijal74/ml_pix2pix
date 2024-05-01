@@ -2,8 +2,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from src.discriminator import Discriminator
-from src.generator import UNet
+from discriminator import Discriminator
+from generator import UNet
 
 # %%
 loss_comparison = nn.BCEWithLogitsLoss() 
