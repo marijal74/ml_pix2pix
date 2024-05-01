@@ -2,10 +2,10 @@
 import matplotlib.pyplot as plt
 
 # %%
-def print_sample(sample, generated_img, row=0):
-    input = sample['x']
-    ground_truth = sample['y']
-    generated_img = generated_img
+def print_sample(input, ground_truth, generated_img, row=0):
+    input = input.detach().cpu()
+    ground_truth = ground_truth.detach().cpu()
+    generated_img = generated_img[0].detach().cpu()
     imgs = [input, ground_truth, generated_img]
     _, axs = plt.subplots(ncols=3, squeeze=False)
     axs[0, 0].set_title('input')
