@@ -59,49 +59,49 @@ class Pix2PixDataset(Enum):
             return f'http://efrosgans.eecs.berkeley.edu/pix2pix/datasets/{self.value}.tar.gz'
 
 # %%
+def download_dataset(dataset: Pix2PixDataset, path = './data'):
+    url = dataset.get_url()
+    if not os.path.exists(path):
+        print("Creating data folder")
+        os.makedirs(path)
+    file_name = url.split('/')[-1]
+    dataset_path = os.path.join(path, file_name)
+    if not os.path.exists(path + '/' + dataset.value):
+        print("Downloading the dataset {}".format(dataset_path))
+        response = requests.get(url)
+        with open(dataset_path, 'wb') as f:
+            f.write(response.content)
+        with tarfile.open(dataset_path, 'r') as tar:
+            tar.extractall(path, filter='data')
+            os.remove(dataset_path)
+
+# %%
+def remove_dataset(path):
+    shutil.rmtree(path)
+
+# %%
 class ImageDataset(Dataset):    
-    def __init__(self, dataset: Pix2PixDataset):
+    def __init__(self, dataset: Pix2PixDataset, test = False, val = False):
         self.dataset = dataset
         self.data_folder = './data'
+        self.val = val
+        self.test = test
         self.preprocess = v2.Compose([
             v2.Resize([286, 286]),
             v2.RandomCrop([256, 256]),
             v2.RandomHorizontalFlip(p=0.5),
             v2.ToDtype(torch.float32, scale=True)])
 
-    @staticmethod
-    def __download_dataset__(url, dataset_path):
-        response = requests.get(url)
-        if not os.path.exists(dataset_path):
-            os.makedirs(dataset_path)
-        file_name = url.split('/')[-1]
-        dataset_path = os.path.join(dataset_path, file_name)
-        with open(dataset_path, 'wb') as f:
-            f.write(response.content)
-        return dataset_path
-    
-    @staticmethod
-    def __extract_dataset__(path, datafile):
-        with tarfile.open(datafile, 'r') as tar:
-            tar.extractall(path, filter='data')
-        os.remove(datafile)
-    
-    @staticmethod
-    def remove_dataset(path):
-        shutil.rmtree(path)
-
     def load_dataset(self):
-        self.data_file = ImageDataset.__download_dataset__(self.dataset.get_url(), self.data_folder)
-        ImageDataset.__extract_dataset__(self.data_folder, self.data_file)
         self.__get_image_paths__()
 
-    def __get_image_paths__(self, test = False, val = False):
+    def __get_image_paths__(self):
         path = self.data_folder + '/' + self.dataset.value
-        if test:
+        if self.test:
             path += '/test'
         else:
             path += '/train'
-        if val:
+        if self.val:
             path += '/val'
         self.img_paths = []
         for root, _, fnames in sorted(os.walk(path)):
