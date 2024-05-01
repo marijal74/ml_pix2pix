@@ -114,8 +114,8 @@ class ImageDataset(Dataset):
         img = read_image(img_path)
         _, h, w = img.size()
         w2 = int(w/2)
-        x = self.preprocess(v2.functional.crop(img, 0, 0, w2, h))
-        y = self.preprocess(v2.functional.crop(img, 0, w2, w2, h))
+        x = self.preprocess(v2.functional.crop(img, 0, w2, w2, h))
+        y = self.preprocess(v2.functional.crop(img, 0, 0, w2, h))
         return {'x':x, 'y':y}
     
     def __len__(self):
