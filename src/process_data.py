@@ -119,5 +119,5 @@ class ImageDataset(Dataset):
         return {'x':x, 'y':y}
     
     def __len__(self):
-        self.get_image_paths()
+        self.__get_image_paths__()
         return len(self.img_paths)
