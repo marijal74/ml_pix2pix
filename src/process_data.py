@@ -19,6 +19,41 @@ class Pix2PixDataset(Enum):
         FACADES = 'facades'
         MAPS = 'maps'
         NIGHT2DAY = 'night2day'
+
+        def num_epochs(self):
+            print(self)
+            match self:
+                case Pix2PixDataset.CITYSCAPES:
+                    return 200
+                case Pix2PixDataset.EDGES2HANDBAGS:
+                    return 15
+                case Pix2PixDataset.EDGES2SHOES:
+                    return 15
+                case Pix2PixDataset.FACADES:
+                    return 200
+                case Pix2PixDataset.MAPS:
+                    return 200
+                case Pix2PixDataset.NIGHT2DAY:
+                    return 17
+                case _:
+                    print("Invalid dataset")
+
+        def batch_size(self):
+            match self:
+                case Pix2PixDataset.CITYSCAPES:
+                    return 1
+                case Pix2PixDataset.EDGES2HANDBAGS:
+                    return 4
+                case Pix2PixDataset.EDGES2SHOES:
+                    return 4
+                case Pix2PixDataset.FACADES:
+                    return 1
+                case Pix2PixDataset.MAPS:
+                    return 1
+                case Pix2PixDataset.NIGHT2DAY:
+                    return 4
+                case _:
+                    print("Invalid dataset")
         
         def get_url(self):
             return f'http://efrosgans.eecs.berkeley.edu/pix2pix/datasets/{self.value}.tar.gz'
@@ -58,8 +93,9 @@ class ImageDataset(Dataset):
     def load_dataset(self):
         self.data_file = ImageDataset.__download_dataset__(self.dataset.get_url(), self.data_folder)
         ImageDataset.__extract_dataset__(self.data_folder, self.data_file)
+        self.__get_image_paths__()
 
-    def get_image_paths(self, test = False, val = False):
+    def __get_image_paths__(self, test = False, val = False):
         path = self.data_folder + '/' + self.dataset.value
         if test:
             path += '/test'
@@ -85,8 +121,3 @@ class ImageDataset(Dataset):
     def __len__(self):
         self.get_image_paths()
         return len(self.img_paths)
-
-# %%
-
-
-
