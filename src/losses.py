@@ -2,8 +2,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from .discriminator import Discriminator
-from .generator import UNet
+from src.discriminator import Discriminator
+from src.generator import UNet
 
 # %%
 loss_comparison = nn.BCEWithLogitsLoss() 
@@ -45,7 +45,7 @@ def generator_training_step(discriminator: Discriminator, generator:UNet, inputs
     disc_output = discriminator(inputs, generated_image)
     desired_output = torch.ones(size = disc_output.shape, dtype=torch.float, device=device)
     
-    generator_loss = loss_comparison(disc_output, desired_output) + L1_lambda * torch.abs(generated_image-targets).sum()
+    generator_loss = loss_comparison(disc_output, desired_output) + L1_lambda * L1_loss(generated_image, targets)
     generator_loss.backward()
     opt.step()
 
@@ -57,4 +57,5 @@ def get_optimizer(parameters):
     beta1=0.5
     beta2=0.999
     return optim.Adam(parameters, lr=lr, betas=(beta1, beta2))
+
 
