@@ -15,14 +15,16 @@ def train_discriminator_step(discriminator: Discriminator, generator:UNet, input
 
     # real image loss
     output = discriminator(inputs, targets)
-    real_loss = loss_comparison(output, True)
+    label = torch.ones(size = output.shape, dtype=torch.float, device=device)
+    real_loss = loss_comparison(output, label, reduce=True)
 
     gen_image = generator(inputs).detach()
 
     # fake image loss
     fake_output = discriminator(inputs, gen_image)
+    fake_label = torch.zeros(size = fake_output.shape, dtype=torch.float)
     
-    fake_loss = loss_comparison(fake_output, False)
+    fake_loss = loss_comparison(fake_output, fake_label, reduce=False)
 
     total_loss = (real_loss + fake_loss)/2
 
@@ -40,8 +42,9 @@ def generator_training_step(discriminator: Discriminator, generator:UNet, inputs
     generated_image = generator(inputs)
     
     disc_output = discriminator(inputs, generated_image)
+    desired_output = torch.ones(size = disc_output.shape, dtype=torch.float)
     
-    generator_loss = loss_comparison(disc_output, True) + L1_lambda * L1_loss(generated_image, targets)
+    generator_loss = loss_comparison(disc_output, desired_output, reduce=True) + L1_lambda * L1_loss(generated_image, targets)
     generator_loss.backward()
     opt.step()
 
