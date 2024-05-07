@@ -23,7 +23,7 @@ def train_discriminator_step(discriminator: Discriminator, generator:UNet, input
 
     # fake image loss
     fake_output = discriminator(inputs, gen_image)
-    fake_label = torch.zeros(size = fake_output.shape, dtype=torch.float)
+    fake_label = torch.zeros(size = fake_output.shape, dtype=torch.float, device=device)
     
     fake_loss = loss_comparison(fake_output, fake_label)
 
