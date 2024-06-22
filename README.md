@@ -28,6 +28,7 @@ Korišćeni paketi:
  * `utils.py` - skripta za iscrtavanje slika i grafikona
  * `process_data.py` - učitavanje podataka
  * `losses.py` - ižračunavanje funkcije greške
+
 Jupyter sveske numerisane od 1 do 4 demonstriraju svaku od pomoćnih skripti.
 
 Jupyter sveske numerisane od 5 do 7 prikazuju proces učenja modela za vrednosti parametra lambda 50, 75 i 100.
