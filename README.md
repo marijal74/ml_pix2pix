@@ -2,7 +2,16 @@
 #### _Projekat za kurs Mašinskog učenja, školska 2023/2024 godina_
 
 ## Skup podataka
-Korišćen je facades skup podataka sa [ove lokacijje](https://www.google.com/url?q=http%3A%2F%2Fefrosgans.eecs.berkeley.edu%2Fpix2pix%2Fdatasets%2F)
+Korišćen je [facades](https://cmp.felk.cvut.cz/~tylecr1/facade/) skup podataka sa [ove lokacijje](https://www.google.com/url?q=http%3A%2F%2Fefrosgans.eecs.berkeley.edu%2Fpix2pix%2Fdatasets%2F)
+```
+@INPROCEEDINGS{Tylecek13,
+  author = {Radim Tyle{\v c}ek, Radim {\v S}{\' a}ra},
+  title = {Spatial Pattern Templates for Recognition of Objects with Regular Structure},
+  booktitle = {Proc. GCPR},
+  year = {2013},
+  address = {Saarbrucken, Germany},
+}
+```
 
 ## Pokretanje projekta
 
