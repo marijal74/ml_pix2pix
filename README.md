@@ -2,7 +2,7 @@
 #### _Projekat za kurs Mašinskog učenja, školska 2023/2024 godina_
 
 ## Skup podataka
-Korišćen je [facades](https://cmp.felk.cvut.cz/~tylecr1/facade/) skup podataka sa [ove lokacijje](https://www.google.com/url?q=http%3A%2F%2Fefrosgans.eecs.berkeley.edu%2Fpix2pix%2Fdatasets%2F)
+Korišćen je [facades](https://cmp.felk.cvut.cz/~tylecr1/facade/) skup podataka.
 ```
 @INPROCEEDINGS{Tylecek13,
   author = {Radim Tyle{\v c}ek, Radim {\v S}{\' a}ra},
@@ -28,6 +28,7 @@ Korišćeni paketi:
  * `utils.py` - skripta za iscrtavanje slika i grafikona
  * `process_data.py` - učitavanje podataka
  * `losses.py` - ižračunavanje funkcije greške
+
 Jupyter sveske numerisane od 1 do 4 demonstriraju svaku od pomoćnih skripti.
 
 Jupyter sveske numerisane od 5 do 7 prikazuju proces učenja modela za vrednosti parametra lambda 50, 75 i 100.
