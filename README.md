@@ -34,6 +34,8 @@ Jupyter sveske numerisane od 1 do 4 demonstriraju svaku od pomoćnih skripti.
 Jupyter sveske numerisane od 5 do 7 prikazuju proces učenja modela za vrednosti parametra lambda 50, 75 i 100.
 Model je treniran u GoogleColab okruženju.
 
+Modeli su sačuvani na: https://drive.google.com/drive/folders/1dW6UztwjdhsJ0O2_kP__kaRWcO9fWKb0?usp=sharing
+
 ## Literatura
 Za izradu projekta korišćeno je:
 * [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004)
