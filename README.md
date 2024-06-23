@@ -1,3 +1,7 @@
+<a target="_blank" href="https://colab.research.google.com/github/marijal74/ml_pix2pix/blob/main/demo.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
 # ml_pix2pix
 #### _Projekat za kurs Mašinskog učenja, školska 2023/2024 godina_
 
